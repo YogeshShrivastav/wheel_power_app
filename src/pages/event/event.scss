@@ -1,0 +1,35 @@
+page-event {
+    .fully-list
+    {
+        .bench
+        {
+            margin-top: 20px;
+            
+            &:nth-child(1){margin-top: 0;}
+            
+            .img
+            {
+                line-height: 0px;
+                background: #fff;
+                
+                img 
+                {
+                    width: 100%;
+                }
+            }
+            
+            .text
+            {
+                background: $theme1;
+                padding: 20px;
+                
+                p
+                {
+                    @extend.semibold;
+                    font-size: 16px;
+                    color: $theme2;
+                }
+            }
+        }
+    }
+}

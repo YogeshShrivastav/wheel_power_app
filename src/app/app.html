@@ -1,0 +1,49 @@
+<ion-menu [content]="content">
+    <ion-header>
+        <ion-toolbar>
+            <img src="assets/imgs/main-imgs/home-logo.png" alt="">
+        </ion-toolbar>
+    </ion-header>
+    
+    <ion-content *ngIf="token">
+        <div *ngFor="let p of user_pages" class="option" menuClose (click)="openPage(p)">
+            <div class="outer">
+                <div class="innear">
+                    <i class="material-icons">{{p.icon}}</i>
+                    <a href="#">{{p.title}}</a>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+    
+    <ion-content *ngIf="!token">
+        <div *ngFor="let p of customer_pages" class="option" menuClose (click)="openPage(p)">
+            <div class="outer">
+                <div class="innear">
+                    <i class="material-icons">{{p.icon}}</i>
+                    <a href="#">{{p.title}}</a>
+                </div>
+            </div>
+        </div>
+    </ion-content>    
+
+    <ion-footer>
+        <div class="login-btn m16 mt0" menuClose *ngIf="!token" (click)="Login()">
+            <div class="outer">
+                <div class="innear">
+                    <button ion-button round block>LOGIN</button>
+                </div>
+            </div>
+        </div>
+        <div class="login-btn m16 mt0" menuClose *ngIf="token" (click)="LogOut()">
+            <div class="outer">
+                <div class="innear">
+                    <button ion-button round block>LOGOUT</button>
+                </div>
+            </div>
+        </div>
+    </ion-footer>
+    
+</ion-menu>
+
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

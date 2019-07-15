@@ -1,0 +1,157 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>
+			<h1>Enquiry</h1>
+		</ion-title>
+		<ion-buttons end class="search-icon">
+			<button (click)="goToSearch()" ion-button icon-only>
+				<ion-icon name="search"></ion-icon>
+			</button>
+		</ion-buttons>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<form [formGroup]="validations_form" (ngSubmit)="submit_enquiry()" autocomplete="off">
+		
+		<div class="enquiry">
+			<ion-list>
+				<!-- <ion-item>
+					<ion-label floating>Company Name</ion-label>
+					<ion-input type="text" [(ngModel)]="form.company" formControlName="company" ></ion-input>
+				</ion-item>
+				<p class="error-left relative" *ngIf="validations_form.get('company').hasError('required') && validations_form.get('company').touched">*Company is Mandatory</p>
+				 -->
+				<!-- <div class="dflex">
+					<ion-item>
+						<ion-label floating>First Name</ion-label>
+						<ion-input type="text" [(ngModel)]="form.fname" formControlName="fname" ></ion-input>
+					</ion-item>
+					<p class="error-left relative" *ngIf="validations_form.get('fname').hasError('required') && validations_form.get('fname').touched">*First Name is Mandatory</p>
+					
+					<ion-item class="ml8">
+						<ion-label floating>Last Name</ion-label>
+						<ion-input type="text" [(ngModel)]="form.lname" formControlName="lname" ></ion-input>
+					</ion-item>
+					<p class="error-left relative" *ngIf="validations_form.get('lname').hasError('required') && validations_form.get('lname').touched">*Last Name is Mandatory</p>
+					
+					
+				</div> -->
+				
+				<div class="dflex">
+					<div class="wp50 mr8">
+						<ion-item>
+							<ion-label floating>First Name*</ion-label>
+							<ion-input type="text" formControlName="fname" [(ngModel)]="form.fname"></ion-input>
+						</ion-item>
+						<p class="error-left relative"  *ngIf="validations_form.get('fname').hasError('required') && validations_form.get('fname').touched">*First Name is Mandatory</p>
+					</div>
+					<div class="wp50 ml8">
+						<ion-item>
+							<ion-label floating>Last Name*</ion-label>
+							<ion-input type="text" [(ngModel)]="form.lname" formControlName="lname"></ion-input>
+						</ion-item>
+						<p class="error-left relative" *ngIf="validations_form.get('lname').hasError('required') && validations_form.get('lname').touched">*Last Name is Mandatory</p>
+					</div>
+				</div>
+				
+				<ion-item>
+					<ion-label floating>Email ID</ion-label>
+					<ion-input type="text" [(ngModel)]="form.email" formControlName="email" ></ion-input>
+				</ion-item>
+				
+				<p class="error-left relative" *ngIf="validations_form.get('email').hasError('required') && validations_form.get('email').touched">*Email is Mandatory</p>
+				<p class="error-left relative" *ngIf="validations_form.controls['email'].errors && validations_form.controls['email'].touched">*Email not valid</p>
+				
+				<ion-item>
+					<ion-label floating>Phone No.</ion-label>
+					<ion-input type="number" [(ngModel)]="form.phone" formControlName="phone" ></ion-input>
+				</ion-item>
+				
+				<p class="error-left relative" *ngIf="validations_form.get('phone').hasError('required') && validations_form.get('phone').touched">*Phone No. is Mandatory</p>
+				<p class="error-left relative" *ngIf="(validations_form.get('phone').hasError('minlength') || validations_form.get('phone').hasError('maxlength')) && validations_form.get('phone').touched">*Phone No. not valid</p>
+				
+				<div class="drope-down">
+					<ion-item>
+						<ion-label floating>State</ion-label>
+						<ion-select  (ionChange)="getCity(form.state)"   formControlName="state" id="myBrowser" [(ngModel)]="form.state"  placeholder="State">
+							<ion-option *ngFor="let row of state_list">{{row.state_name}}</ion-option>
+						</ion-select>
+					</ion-item>
+					<p class="error-left relative" *ngIf="validations_form.get('state').hasError('required') && validations_form.get('state').touched">*State is Mandatory</p>
+					
+				</div>
+				<div class="drope-down">
+					<ion-item>
+						<ion-label floating>City</ion-label>
+						<ion-select  formControlName="city" id="myBrowser" [(ngModel)]="form.city" formControlName="city" placeholder="City" >
+							<ion-option *ngFor="let row of city_list">{{row.district_name}}</ion-option>
+						</ion-select>
+					</ion-item>
+					
+					<p class="error-left relative" *ngIf="validations_form.get('city').hasError('required') && validations_form.get('city').touched">*City is Mandatory</p>
+					
+					
+				</div>
+
+				<div class="drope-down">
+					<ion-item>
+						<ion-label floating>Category</ion-label>
+						<ion-select (ionChange)="get_sub_category(form.category)" formControlName="category" id="myBrowser" [(ngModel)]="form.category"  placeholder="Category">
+							<ion-option *ngFor="let row of category_list">{{row.category}}</ion-option>
+						</ion-select>
+					</ion-item>
+					<p class="error-left relative" *ngIf="validations_form.get('category').hasError('required') && validations_form.get('category').touched">*Category is Mandatory</p>
+					
+				</div>
+
+				<div class="drope-down">
+					<ion-item>
+						<ion-label floating>Sub-Category</ion-label>
+						<ion-select (ionChange)="get_products(form.sub_category)" formControlName="sub_category" id="myBrowser" [(ngModel)]="form.sub_category"  placeholder="Sub-Category">
+							<ion-option *ngFor="let row of sub_category_list">{{row.sub_category}}</ion-option>
+						</ion-select>
+					</ion-item>
+					<p class="error-left relative" *ngIf="validations_form.get('sub_category').hasError('required') && validations_form.get('sub_category').touched">*Sub-Category is Mandatory</p>
+					
+				</div>
+
+				<div class="drope-down">
+					<ion-item>
+						<ion-label floating>Product Name</ion-label>
+						<ion-select  formControlName="product_name" id="myBrowser" [(ngModel)]="form.product_name"  placeholder="Product name">
+							<ion-option *ngFor="let row of product_list">{{row.product_name}}</ion-option>
+						</ion-select>
+					</ion-item>
+					<p class="error-left relative" *ngIf="validations_form.get('product_name').hasError('required') && validations_form.get('product_name').touched">*Product Name is Mandatory</p>
+					
+				</div>
+				
+				<div class="drope-down">
+					<ion-item>
+						<ion-select formControlName="user" id="myBrowser" [(ngModel)]="form.user" placeholder="User">
+							<ion-option>Retailer</ion-option>
+							<ion-option> Distributor</ion-option>
+							<ion-option>Others</ion-option>   
+						</ion-select>
+					</ion-item>
+					
+					<p class="error-left relative" *ngIf="validations_form.get('user').hasError('required') && validations_form.get('user').touched">*User is Mandatory</p>
+					
+				</div>
+				<ion-item>
+					<ion-input style="height: auto; margin-top: 10px;" type="text" [(ngModel)]="form.enquiry" formControlName="enquiry" placeholder="Enquiry"></ion-input>
+					
+				</ion-item>
+				
+				<p class="error-left relative" *ngIf="validations_form.get('enquiry').hasError('required') && validations_form.get('enquiry').touched">*Enquiry is Mandatory</p>
+				
+			</ion-list>
+			<div class="cs-btn">
+				<button ion-button color="theme">ENQUIRY</button>
+			</div>	
+		</div>
+		
+	</form>
+</ion-content>
+

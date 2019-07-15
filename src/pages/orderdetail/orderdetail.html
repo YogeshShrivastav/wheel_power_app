@@ -1,0 +1,220 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>Order Details {{orderdetaildata.date_created | date:'dd MMMM y'}}</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<div class="collaps od-summary">
+		<ul class="collapsible">
+			<li class="active">
+				<div class="collapsible-header">
+					<div class="heading unl">
+						<h1>Order Summary</h1>
+						<div class="cs-btn red">
+							<button  (click)="cancel_order(orderdetaildata.id)" style="height: 30px; top: -5px;">Cancel Order</button>
+						</div>
+					</div>
+				</div>
+				<div class="collapsible-body">
+					<div class="cs-table">
+						
+						<div class="br-table">
+							<table class="wp100">
+								<tr>
+									<td>Order No.</td>
+									<th class="w120">#ORD{{orderdetaildata.id}}</th>
+								</tr>
+								<tr>
+									<td>Total Item</td>
+									<th>{{orderdetaildata.total_item}}</th>
+								</tr>
+								<tr *ngIf="login_data.user_type == 'sales'">
+									<td>Created By</td>
+									<th>{{orderdetaildata.created_by_name | titlecase}}</th>
+								</tr>
+								<tr>
+									<td>{{login_data.user_type == 'sales' ? 'Customer' : 'Name'}}</td>
+									<th>{{orderdetaildata.customer_name | titlecase}}</th>
+								</tr>
+								<tr>
+									<td>Status</td>
+									<th>{{orderdetaildata.status | titlecase}}</th>
+								</tr>
+							</table>
+						</div>
+					</div>
+					
+					<div class="sm-table" *ngIf="orderdetaildata.credit_amount">
+						<table>
+							<tr>
+								<th class="w227">Credit Amount</th>
+								<th class="w85">&#8377; {{orderdetaildata.credit_amount}}</th>
+							</tr>
+						</table>
+					</div>
+					
+					<div class="sm-table">
+						<table>
+							<tr>
+								<th class="w227">Total Payment</th>
+								<th class="w85">&#8377; {{orderdetaildata.payment_total}}</th>
+							</tr>
+						</table>
+					</div>
+					
+					<!-- <div class="cs-btn greeen" padding>
+						<button ion-item (click)="place_order()">PLACE ORDER</button>
+					</div> -->
+				</div>
+			</li>
+		</ul>
+	</div>
+	
+	<div class="productlist">
+		<div class="figure" *ngFor="let row of orderdetaildata.order_item; let i=index">
+			<div class="prnames"  (click)="goToProductdetail(row.cat_no)">
+				<h1>{{row.product_name | titlecase}}</h1>
+				<p>{{row.brand | titlecase}} | <span>{{row.cat_no | titlecase}}</span></p>
+			</div>
+			<div class="pr-figure">
+				<div class="thumbd">
+					<div class="thumb" (click)="zoom_image(upload_url+row.image[0].image)">
+						<img src="{{row.image.length !=0 ? upload_url+row.image[0].image : 'assets/imgs/default.png' }}" alt="">                           
+					</div>
+				</div>
+				<div class="description" >
+                    <!-- (click)="goToProductdetail(row.cat_no)" -->
+					<div class="table-fgr" >
+						<div class="pr-info">
+							<p>Category</p>
+							<p>{{row.category | titlecase}}</p>
+						</div>
+						<div class="pr-info">
+							<p>Price</p>
+							<p>&#8377; {{row.price}}/-</p>
+						</div>
+					</div>
+					
+					<div class="qnt-input">
+						<div class="qntbx">
+							<label>QTY</label>
+							<ul>
+								<li><input type="number" name="qty{{i}}" [readonly]="orderdetaildata.status != 'pending'" (input)="row.enable = true" [(ngModel)]="row.order_qty"></li>
+							</ul>
+						</div>
+						<button ion-item class="cart" *ngIf="row.enable" (click)="update_order(row)"><i class="material-icons">save</i></button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</ion-content>
+
+
+
+
+
+
+
+
+
+
+<!-- <ion-header>	
+	<ion-navbar>
+		<ion-title>#ORD{{orderdetaildata.id}}</ion-title>
+	</ion-navbar>	
+</ion-header>
+<ion-content class="orderlist">
+	<a class="figure">
+		<div class="header">
+			<div class="left">
+				<img src="assets/imgs/ic_date.svg" alt="">
+				<p>{{orderdetaildata.date_created | date:'dd MMMM y'}}</p>
+			</div>
+			<div class="right">
+				<span class="status" [ngClass]="orderdetaildata.order_status">{{orderdetaildata.order_status}}</span>
+			</div>
+		</div>
+		<div class="bdy">
+			<table>
+				<tr>
+					<td>
+						<table>
+							<tr>
+								<td class="w80">Order No.</td>
+								<th class="w30">:</th>
+								<th>#ORD{{orderdetaildata.id}}</th>
+							</tr>
+							<tr>
+								<td>Total Item</td>
+								<th>:</th>
+								<th>{{orderdetaildata.total_item}}</th>
+							</tr>
+							<tr>
+								<td>Created By</td>
+								<th>:</th>
+								<th>{{orderdetaildata.created_by_name | titlecase}}</th>
+							</tr>
+							<tr>
+								<td>Customer</td>
+								<th>:</th>
+								<th>{{orderdetaildata.customer_name}}</th>
+							</tr>
+							<tr>
+								<td>Status</td>
+								<th>:</th>
+								<th>{{orderdetaildata.status}}</th>
+							</tr>
+						</table>
+					</td>
+					<td class="w100">
+						<h1><img src="assets/imgs/inr-icon.svg" alt=""> {{orderdetaildata.order_total | number:'1.2-2'}}</h1>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</a> -->
+	
+	<!-- <div class="refbtn padding16 pt0" *ngIf="orderdetaildata.status=='pending'">
+		<button (click)="cancel_order(orderdetaildata.id)">cancel ORDER</button>
+	</div>	 -->
+	<!-- <div class="products listing">
+		
+		<div class="figure" *ngFor="let item_val of orderdetaildata.order_item; let i = index">
+			<div class="plc"> -->
+				<!-- <button class="close" *ngIf="orderdetaildata.status=='pending'" (click)="delete_item(item_val.id,i)"><ion-icon ios="ios-close" md="md-close"></ion-icon></button> -->
+				<!-- <div class="thumb">
+					<div class="outer">
+						<div class="innear">
+							<img [src]="item_val.image[0].image ? upload_url+item_val.image[0].image : 'assets/imgs/products/1.png'" alt="">
+						</div>
+					</div>
+				</div>				
+				<div class="description">
+					<p>{{item_val.cat_no}} {{item_val.product_name}}</p>
+					<p>{{item_val.category}} {{item_val.brand}}</p>
+					<p>Qty : {{item_val.qty}}</p>
+					<p>INR {{item_val.total_value}}</p> -->
+					<!-- <div class="bk-btn">
+						<ul *ngIf="orderdetaildata.status=='pending'">
+							<li>
+								<button (click)="change_item_qty(item_val.id,'s')" ion-button [disabled]="item_val.remain_qty == 1">
+									<ion-icon ios="ios-remove" md="md-remove"></ion-icon>
+								</button>
+							</li>
+							<li style="padding:5px!important;"><strong>{{item_val.qty}}</strong></li>
+							<li>
+								<button (click)="change_item_qty(item_val.id,'a')" ion-button>
+									<ion-icon ios="ios-add" md="md-add"></ion-icon>
+								</button>
+							</li>
+						</ul>
+					</div> -->
+					<!-- </div>
+					</div>
+				</div>
+				
+			</div>
+		</ion-content> -->
+		

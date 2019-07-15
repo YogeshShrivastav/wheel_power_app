@@ -1,0 +1,10 @@
+<ion-tabs #tabs>
+    <ion-tab [root]="tab1Root" tabTitle="HOME" tabIcon="md-home"></ion-tab>
+    <ion-tab [root]="tab2Root" tabTitle="PRODUCT" tabIcon="apps" (ionSelect)="product_catalooge()"></ion-tab>
+    <ion-tab [root]="tab3Root" tabTitle="CONTACT US" tabIcon="md-contact"></ion-tab>
+    <ion-tab *ngIf="token" [root]="tab4Root" tabTitle="Orders" tabIcon="md-basket"></ion-tab>
+
+    <!-- <ion-tab [root]="tab6Root" tabTitle="NEW ARRIVALS" tabIcon="apps"></ion-tab> -->
+    <!-- <ion-tab [root]="tab7Root" tabTitle="ABOUT US" tabIcon="md-contact"></ion-tab> -->
+    <!-- <ion-tab [root]="tab8Root" tabTitle="SEARCH" tabIcon="md-basket"></ion-tab> -->
+</ion-tabs>

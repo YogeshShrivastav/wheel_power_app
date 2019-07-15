@@ -1,0 +1,123 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            <h1>Customer Details </h1>
+        </ion-title>
+        <ion-buttons end class="notifi-icon">
+            <button ion-button icon-only>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+    <div class="wallet-heading flat-heading dflex" *ngIf="data.order_total_amount">
+        <p class="subject">Order Total</p>
+        <p class="value">&#x20B9; {{data.order_total_amount}}</p>
+    </div>
+    
+    <div class="wallet-heading flat-heading dflex bdrt0" *ngIf="data.total_payment">
+        <p class="subject">Total Payment</p>
+        <p class="value">&#x20B9; {{data.total_payment}}</p>
+    </div>
+    
+    <!-- <div class="wallet-heading flat-heading dflex bdrt0" *ngIf="data.credit">
+        <p class="subject">Credit Amount</p>
+        <p class="value">&#x20B9; {{data.credit_data.credit_amt}}</p>
+    </div> -->
+    
+    <div class="cs-dropdown" style="padding: 14px 0px;">
+        <div class="drop-down">
+            <form #f="ngForm" name="form" (ngSubmit)='f.valid && place_order()'>
+                <div class="csn-heading" *ngIf="data.order_total_amount">Customer Information</div>
+                
+                <div class="input-cs">
+                    <ion-item>			
+                        <ion-label floating><span><strong>*</strong> Name</span></ion-label>
+                        <ion-input type="text" name="name" [(ngModel)]="data.name" required></ion-input>
+                    </ion-item>       
+                    <p class="error-left" *ngIf="f.submitted && !data.name">Name is required</p>
+                    
+                    <ion-item >			
+                        <ion-label floating><span><strong>*</strong> Mobile 1</span></ion-label>
+                        <ion-input type="tel" name="mobile_1" (keypress)="MobileNumber($event)" (input)="check_user()" [min]="0" minLength="10" maxLength="10" [(ngModel)]="data.mobile_1" required></ion-input>
+                    </ion-item>                   
+                    <p class="error-left" *ngIf="f.submitted && !data.mobile_1">Mobile No. is required</p>
+                    
+                    <ion-item>
+                        <ion-label floating><span>Mobile 2</span></ion-label>
+                        <ion-input type="tel" name="mobile_2" (keypress)="MobileNumber($event)"  [min]="0" minLength="10" maxLength="10" [(ngModel)]="data.mobile_2"></ion-input>
+                    </ion-item>
+                    
+                    <ion-item>
+                        <ion-label floating><span>Email-Id</span></ion-label>
+                        <ion-input type="email" name="email" [(ngModel)]="data.email"></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label floating><span>GST No.</span></ion-label>
+                        <ion-input type="text" name="gst_no" [(ngModel)]="data.gst_no"></ion-input>
+                    </ion-item>
+                    
+                    <ion-item>
+                        <ion-label floating><span><strong>*</strong> Address</span></ion-label>
+                        <ion-input type="text" name="address" [(ngModel)]="data.address"></ion-input> 
+                    </ion-item>
+                    <p class="error-left" *ngIf="f.submitted && !data.address">Address is required</p>
+                </div>
+
+                <div class="drop-down csddr"> 
+                    <ion-item >
+                        <ion-label><span><strong>*</strong> State</span></ion-label>
+                        <ionic-selectable
+                            item-content 
+                            [(ngModel)]="state_name"
+                            [items]="state_list"
+                            itemValueField="state_name"
+                            itemTextField="state_name"
+                            name="state_name"
+                            (onChange)="get_district(state_name)"
+                            [canSearch]="true"
+                            required>
+                        </ionic-selectable>                    
+                    </ion-item>
+                </div>
+                <p class="error-left" *ngIf="f.submitted && !state_name">State is required</p>
+                
+                <div class="drop-down csddr">
+                    <ion-item >
+                        <ion-label><span><strong>*</strong>District</span></ion-label>
+                            <ionic-selectable
+                            item-content 
+                            [(ngModel)]="district_name"
+                            [items]="district_list"
+                            itemValueField="district_name"
+                            itemTextField="district_name"
+                            name="district_name"
+                            (onChange)="get_city(district_name)"
+                            [canSearch]="true"
+                            required>
+                        </ionic-selectable>
+                    </ion-item>
+                </div>
+                <p class="error-left" *ngIf="f.submitted && !district_name">District is required</p>
+                
+                <div class="input-cs">	
+                    
+                    <ion-item>
+                        <ion-label floating><span><strong>*</strong>City</span></ion-label>
+                        <ion-input type="text" name="city" [min]="0" [(ngModel)]="data.city" required></ion-input> 
+                    </ion-item>
+                    <p class="error-left" *ngIf="f.submitted && !data.city">City is required</p>
+                    
+                    <ion-item>
+                        <ion-label floating><span>Pincode</span></ion-label>
+                        <ion-input type="tel" name="pincode" [min]="0" minLength="6" maxLength="6" [(ngModel)]="data.pincode"></ion-input> 
+                    </ion-item>
+                </div>
+                <button class="mr10 mt15" ion-button outline  color="theme" block>SAVE</button>
+            </form>
+        </div>            
+    </div>
+</ion-content>

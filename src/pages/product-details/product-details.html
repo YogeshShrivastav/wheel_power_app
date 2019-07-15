@@ -1,0 +1,91 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>
+			<h1>{{product_data.product_name | uppercase}}</h1>
+		</ion-title>
+		<!-- <ion-buttons end class="search-icon"  (click)="goToSearch()">
+			<button ion-button icon-only>
+				<ion-icon name="search"></ion-icon>
+			</button>
+		</ion-buttons> -->
+		<ion-buttons end class="cart">
+            <!-- <button ion-button icon-only (click)="ViewCartPage()">
+                <ion-icon name="md-cart"></ion-icon>
+            </button> -->
+        </ion-buttons>
+	</ion-navbar>
+</ion-header>
+
+<ion-content class="pb0" padding>
+	<div>
+		<div class="product-slide">
+			<ul>
+				<li class="active" >
+					<div class="thumb">
+						<div class="outer">
+							<div class="innear">
+								<img [src]="first_image ? upload_url+first_image : 'assets/imgs/main-imgs/product.png'" alt="">
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="product-thumb-slide">
+			<ul>
+				<li *ngFor="let data of this.product_data.image; let i=index" [ngClass]="{'active': i==activeProductSlide, 'ml16' : i>0}" (click)="slideClicked(i)">
+					<div class="icon">
+						<div class="outer">
+							<div class="innear">
+								<img [src]="data.image ? upload_url+data.image : 'assets/imgs/main-imgs/product.png'" alt="">	
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="cs-description">
+			<h1>{{product_data.cat_no | uppercase}}</h1>
+			<h3>&#x20b9; {{product_data.price? product_data.price : 0}}/-</h3>
+			<h4>{{product_data.sub_category | uppercase}}</h4>
+			<div *ngFor="let data of product_data.feature_type" class="{{data.feature == 'color' ? 'color' : 'Size' }}">
+				<p>{{data.feature | titlecase}} :</p>
+				<ul *ngIf="data.feature == 'color' ">
+					<ng-container *ngFor="let row of product_data.feature">
+						<li *ngIf="row.feature == data.feature" [ngStyle]="{'background': row.value }"></li>
+					</ng-container>
+				</ul>
+				<ul *ngIf="data.feature == 'size' ">
+					<ng-container *ngFor="let row of product_data.feature">
+						<li *ngIf="row.feature == data.feature">
+							<div class="outer">
+								<div class="innear">
+									{{row.value}}
+								</div>
+							</div>
+						</li>
+					</ng-container>
+				</ul>
+				<ul *ngIf="data.feature != 'size' && data.feature == 'color'">
+					<ng-container *ngFor="let row of product_data.feature">
+						<li>
+							<div class="outer">
+								<div class="innear">
+									{{row.value}}
+								</div>
+							</div>
+						</li>
+					</ng-container>
+				</ul>
+			</div>
+		</div>
+	</div>
+</ion-content>
+<ion-footer padding>
+	<!-- <div class="cs-btn">
+		<button ion-button block color="theme" (click)="enquiry()">ENQUIRY NOW</button>
+	</div> -->
+	<!-- <div class="cs-btn">
+		<button ion-button block color="theme" (click)="add_to_cart()">ADD TO CART</button>
+	</div> -->
+</ion-footer>

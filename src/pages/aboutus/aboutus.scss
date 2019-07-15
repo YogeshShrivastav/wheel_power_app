@@ -1,0 +1,93 @@
+page-aboutus {
+    
+    .top
+    {
+        .style
+        {
+            height: 100px;
+            width: 100%;
+            margin-top: -5px;
+            .center-img
+            {
+                img
+                {
+                    position: absolute;
+                    top: 10px;
+                    height: 100px;
+                    width: 100%;
+                    left: 0;
+                    right: 0;
+                }
+            }
+        }
+        
+    }
+    
+    .mid-content
+    {
+        text-align: center;
+    }
+    
+    h1
+    {
+        font-size: 16px;
+        @extend.semibold;
+        color: $theme1;
+        padding: 26px 0px 16px 0px !important;
+    }
+    
+    p
+    {
+        font-size: 14px;
+        @extend.regular;
+        line-height: 20px;
+        letter-spacing: 1px;
+        padding: 0px 16px 0px 16px !important;
+    }
+    
+    .mid-style
+    {
+        background: url('../assets/imgs/main-imgs/bg-3.svg')no-repeat;
+        background-size: cover;
+        height: 295px;
+        width: 100%;
+        h1
+        {
+            color: #ffffff;
+            padding: 70px 0px 16px 16px !important;
+        }
+        p
+        {
+            color: #ffffff;
+        }
+    }
+    
+    .objective
+    {
+        margin-top: 16px;
+        img
+        {
+            height: 80px;
+            margin: 0px 10px 0px 0px;
+        }
+        h1, p
+        {
+            padding: 0px !important;
+        }
+    }
+    
+    .last
+    {
+        margin-top: 16px;
+        img
+        {
+            height: 80px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        h1
+        {
+            padding-top: 16px !important;
+        }
+    }
+}

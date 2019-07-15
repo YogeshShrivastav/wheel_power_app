@@ -1,0 +1,7 @@
+{
+  "name": "Wheel Power",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

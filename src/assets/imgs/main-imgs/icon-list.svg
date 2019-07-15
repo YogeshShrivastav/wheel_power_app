@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14.478 18">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+        stroke: #000;
+      }
+
+      .cls-2 {
+        stroke: none;
+      }
+
+      .cls-3 {
+        fill: none;
+      }
+    </style>
+  </defs>
+  <g id="Group_1193" data-name="Group 1193" transform="translate(-307 -85)">
+    <g id="Rectangle_761" data-name="Rectangle 761" class="cls-1" transform="translate(307 85)">
+      <rect class="cls-2" width="5.478" height="5.478" rx="2.739"/>
+      <rect class="cls-3" x="0.5" y="0.5" width="4.478" height="4.478" rx="2.239"/>
+    </g>
+    <g id="Rectangle_766" data-name="Rectangle 766" class="cls-1" transform="translate(316 85)">
+      <rect class="cls-2" width="5.478" height="5.478" rx="2.739"/>
+      <rect class="cls-3" x="0.5" y="0.5" width="4.478" height="4.478" rx="2.239"/>
+    </g>
+    <g id="Rectangle_762" data-name="Rectangle 762" class="cls-1" transform="translate(307 91.261)">
+      <rect class="cls-2" width="5.478" height="5.478" rx="2.739"/>
+      <rect class="cls-3" x="0.5" y="0.5" width="4.478" height="4.478" rx="2.239"/>
+    </g>
+    <g id="Rectangle_765" data-name="Rectangle 765" class="cls-1" transform="translate(316 91.261)">
+      <rect class="cls-2" width="5.478" height="5.478" rx="2.739"/>
+      <rect class="cls-3" x="0.5" y="0.5" width="4.478" height="4.478" rx="2.239"/>
+    </g>
+    <g id="Rectangle_763" data-name="Rectangle 763" class="cls-1" transform="translate(307 97.522)">
+      <rect class="cls-2" width="5.478" height="5.478" rx="2.739"/>
+      <rect class="cls-3" x="0.5" y="0.5" width="4.478" height="4.478" rx="2.239"/>
+    </g>
+    <g id="Rectangle_764" data-name="Rectangle 764" class="cls-1" transform="translate(316 97.522)">
+      <rect class="cls-2" width="5.478" height="5.478" rx="2.739"/>
+      <rect class="cls-3" x="0.5" y="0.5" width="4.478" height="4.478" rx="2.239"/>
+    </g>
+  </g>
+</svg>

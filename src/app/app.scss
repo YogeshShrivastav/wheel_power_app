@@ -1,0 +1,50 @@
+ion-menu
+{
+    background: rgba(0, 0, 0, 0.4);
+    
+    ion-header
+    {
+        text-align: center;
+        img
+        {
+            margin: 18px 0px;
+            height: 100px;
+            padding: 0px 30px;
+        }
+    }
+    ion-content
+    {
+        .option
+        {
+            height: 60px;
+            border-bottom: 1px solid $theme3;
+            .material-icons
+            {
+                float: left;
+                margin: -4px 20px 0px 30px;
+                color: $theme1;
+                font-size: 18px;
+            }
+            a
+            {
+                float: left;
+                color: #000;
+                font-size: 14px;
+                text-transform: capitalize;
+                text-decoration: none;
+                @extend.regular;
+            }
+        }
+        .option:first-child(){ margin-top: 12px;}
+        .option:last-child(){ border-bottom: inherit;}
+    }
+    ion-footer
+    {
+        button
+        {
+            background-image: linear-gradient(#ff7272, #de2929);
+            font-size: 14px !important;
+            letter-spacing: 2px;
+        }
+    }
+}

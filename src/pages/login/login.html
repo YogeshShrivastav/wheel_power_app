@@ -1,0 +1,48 @@
+
+
+<ion-content style="background: linear-gradient(#fbcb5457, #ffffff);">
+    <div class="home-custome">
+        <div class="zoominheader">
+            <div class="zoomoutheader">
+            </div>
+        </div>
+        <div class="logo-1 animated fadeInLeft">
+            <img src="assets/imgs/main-imgs/home-logo.png" alt="">
+        </div>
+        <div class="zik-zak animated zoomIn">
+            <img src="assets/imgs/main-imgs/zik-zak.svg" alt="">
+        </div>
+        <div class="logo-2 animated fadeInRight">
+            <img src="assets/imgs/main-imgs/home-logo-2.png" alt="">
+        </div>
+    </div>
+    
+    <div class="cs-form">
+        
+        <ion-list>
+            <ion-item class="mb15">
+                <ion-label><i class="material-icons">
+                    person
+                </i></ion-label>
+                <ion-input type="text" name="username" [(ngModel)]="data.username" placeholder="Username"></ion-input>
+            </ion-item>	
+            
+            <ion-item>
+                <ion-label><i class="material-icons">
+                    vpn_key
+                </i></ion-label>
+                <ion-input type="password" name="password" [(ngModel)]="data.password" placeholder="Password"></ion-input>
+            </ion-item>	
+            
+        </ion-list>
+        <div class="cs-btn mt32">
+            <button (click)="login()" [disabled]="!data.username || !data.password" ion-button color="theme">LOGIN</button>
+        </div>
+        <div class="cs-btn mt32">
+            Login with Mobile no.<a (click)="goto_customer_login()" color="theme">click here</a>
+        </div> 
+    </div>
+    
+</ion-content>
+
+

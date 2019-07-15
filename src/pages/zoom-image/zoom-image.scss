@@ -1,0 +1,39 @@
+page-zoom-image {
+      
+      ion-content
+      {
+            background: transparent !important;
+            
+            .scroll-content
+            {
+                  padding: 0 !important;
+            }      
+      }
+      
+      .bg-btn
+      {
+            position: absolute;
+            z-index: 9;
+            right: 5px;
+            background: transparent;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+            top: 10px;
+            
+            i
+            {
+                  color: #fff;
+            }
+      }
+      
+      .zoom-img
+      {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            margin: 0 auto;
+            background: rgba(0,0,0,0.9);
+            
+      }
+      
+}

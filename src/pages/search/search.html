@@ -1,0 +1,51 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>
+			<ion-input type="text" #input [(ngModel)]="val" (ngModelChange)="dataChanged(val)" placeholder="Search" class="cs-searc"></ion-input>
+		</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content style="background: #ffbd070a;">
+	<div class="listing">
+		<ion-list>
+			<button ion-item (click)="goToProductDetailPage(val.id)" *ngFor="let val of data">
+				<div class="thumb">
+					<div class="outer">
+						<div class="innear"> 
+							<!-- <ion-icon name="glasses"></ion-icon> -->
+							<img alt="" [src]="val.image ? upload_url+val.image : 'assets/imgs/main-imgs/product.png'">
+						</div>
+					</div>
+				</div>
+				<div class="description">
+					<h2>{{val.product_name}}</h2>
+					<ion-icon name="ios-arrow-forward-outline"></ion-icon>
+				</div>
+			</button>
+		</ion-list>
+	</div>
+
+	<div class="nothing" *ngIf="!request && val && !data.length">
+		<div class="outer">
+			<div class="innear">
+				<img src="assets/imgs/main-imgs/nothing.svg" alt="">
+				<p>Data Not Avilable</p>
+			</div>
+		</div>
+	</div>
+	
+	<!-- <div class="mncontainer" padding *ngIf="!val">
+		<div class="outer">
+			<div class="innear">
+				<h1>Search</h1>
+				<img src="assets/imgs/main-imgs/search-icons.svg" class="csicon" alt="">
+				
+				<div class="dflex mt64">
+					<button ion-button block class="mr8" (click)="getBrandCategory('herry-honey')" >By<br>Harry-Honey</button>	
+					<button ion-button block class="ml8" (click)="getBrandCategory('wheel-power')" >By<br>Wheel-Power</button>
+				</div>
+			</div>
+		</div>
+	</div> -->
+</ion-content>

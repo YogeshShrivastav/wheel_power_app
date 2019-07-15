@@ -1,0 +1,95 @@
+<ion-header>
+  <ion-navbar>
+      <ion-title>Cart Details</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div class="collaps od-summary">
+      <ul class="collapsible">
+          <li class="active">
+              <div class="collapsible-header">
+                  <div class="heading unl">
+                      <h1>Order Summary</h1>
+                  </div>
+              </div>
+              <div class="collapsible-body">
+                  <div class="cs-table">
+                      <div class="head-table">
+                          <table>
+                              <tr>
+                                  <th class="w210">Order details</th>
+                                  <th class="w50">Qty</th>
+                                  <th class="w80">Amount</th>
+                              </tr>
+                          </table>
+                      </div>
+                      <div class="br-table">
+                          <table>
+                              <tr *ngFor="let row of cart_array">
+                                  <td class="w210">{{row.category | uppercase}} - {{row.product_name | uppercase}} - {{row.cat_no | uppercase}}</td>
+                                  <th class="w50" text-center>{{row.qty}}</th>
+                                  <th class="w80">&#8377; {{row.mrp}}</th>
+                              </tr>
+                          </table>
+                      </div>
+                  </div>
+                  
+                  <div class="sm-table">
+                      <table>
+                          <tr>
+                              <th class="w227">Grand Total</th>
+                              <th class="w85">&#8377; {{grand_total}}</th>
+                          </tr>
+                      </table>
+                  </div>
+                  <div class="cs-btn greeen" padding>
+                      <button ion-item (click)="place_order()">PLACE ORDER</button>
+                  </div>
+              </div>
+          </li>
+      </ul>
+  </div>
+  
+  <div class="productlist">
+        <div class="figure" *ngFor="let row of cart_array; let i=index">
+            <div class="prnames"  (click)="goToProductdetail(row.cat_no)">
+                <h1>{{row.product_name | titlecase}}</h1>
+                <p>{{row.brand | titlecase}} | <span>{{row.cat_no | titlecase}}</span></p>
+            </div>
+            <div class="pr-figure">
+                <div class="thumbd">
+                    <div class="thumb" (click)="zoom_image(upload_url+row.image)">
+                        <img [src]="upload_url+row.image" alt="">                           
+                    </div>
+                </div>
+                <div class="description" >
+                    
+                    <div class="table-fgr"  (click)="goToProductdetail(row.cat_no)">
+                        <div class="pr-info">
+                            <p>Category</p>
+                            <p>{{row.category | titlecase}}</p>
+                        </div>
+                        <div class="pr-info">
+                            <p>Price</p>
+                            <p>&#8377; {{row.price}}/-</p>
+                        </div>
+                    </div>
+                    
+                    <div class="qnt-input">
+                        <div class="qntbx">
+                            <label>QTY</label>
+                            <ul>
+                                <li class="delete"><button ion-item (click)="update_cary_qty(i,row.qty,'remove')"><i class="material-icons">remove</i></button></li>
+                                <li><input type="text" name="qty{{i}}" readonly [ngModel]="row.qty"></li>
+                                <li class="add"><button ion-item (click)="update_cary_qty(i,row.qty,'add')"><i class="material-icons">add</i></button></li>
+                            </ul>
+                        </div>
+                        <button ion-item class="csdelete" (click)="removefrom_cart(i)"><i class="material-icons">delete_sweep</i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</ion-content>

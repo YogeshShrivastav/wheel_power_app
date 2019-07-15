@@ -1,0 +1,132 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            <h1>Payment Details</h1>
+        </ion-title>
+        <ion-buttons end class="notifi-icon">
+            <button ion-button icon-only>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+    <div class="wallet-heading flat-heading dflex">
+        <p class="subject">Order Total</p>
+        <p class="value">&#x20B9; {{grand_total}}</p>
+    </div>
+    
+    <!-- <div class="wallet-heading flat-heading dflex bdrt0" *ngIf="data.credit">
+        <p class="subject">Credit Amount</p>
+        <p class="value">&#x20B9; {{credit.credit_amt}}</p>
+    </div> -->
+    
+    <div class="wallet-heading flat-heading dflex bdrt0">
+        <p class="subject">Total Payment</p>
+        <p class="value">&#x20B9; {{total_payment}}</p>
+    </div>
+    
+    <div class="cs-dropdown" style="padding: 14px 0px;">
+        <div class="drop-down">
+            
+            <form #f="ngForm" name="form" (ngSubmit)='f.valid && submit_order()'>
+                
+                
+                
+                <div class="payment-mode">
+                    
+                    <ion-item>
+                        <ion-checkbox color="secondary" name="cheque" (click)="check_mode()" [(ngModel)]="data.cheque"></ion-checkbox>
+                        <ion-label class="cs-label">Cheque</ion-label>
+                    </ion-item>
+                    
+                    <ion-item>
+                        <ion-checkbox color="secondary" name="card" (click)="check_mode()" [(ngModel)]="data.card"></ion-checkbox>
+                        <ion-label class="cs-label">Card</ion-label>
+                    </ion-item>
+                    
+                    <ion-item>
+                        <ion-checkbox color="secondary" name="cash" (click)="check_mode()" [(ngModel)]="data.cash"></ion-checkbox>
+                        <ion-label class="cs-label">Cash</ion-label>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-checkbox color="secondary" name="credit" (click)="check_mode()" [(ngModel)]="data.credit"></ion-checkbox>
+                        <ion-label class="cs-label">Credit</ion-label>
+                    </ion-item>
+                    
+                </div>          
+                <p class="error-mode" *ngIf="error">Please choose any payment order</p>        
+                <div>
+                    <div class="input-cs payment-heading" *ngIf="data.cheque">
+                        <div class="csn-heading">CHEQUE</div>
+                        <ion-item>
+                            <ion-label floating>Bank <strong>*</strong></ion-label>
+                            <ion-input type="text" name="bank" [(ngModel)]="cheque.bank" [ngClass]="{'is-invalid':f.submitted && bank?.invalid}" required></ion-input>
+                        </ion-item>
+                        
+                        <ion-item>
+                            <ion-label floating><span class="mtfield"><strong>*</strong> Cheque Date</span></ion-label>
+                            <ion-datetime displayFormat="MM/DD/YYYY"  name="cheque_date" [(ngModel)]="cheque.cheque_date"></ion-datetime>
+                        </ion-item>
+                        
+                        <ion-item>
+                            <ion-label floating><span class="mtfield"><strong>*</strong> Cheque No</span></ion-label>
+                            <ion-input type="tel" name="cheque_no" [(ngModel)]="cheque.cheque_no" [ngClass]="{'is-invalid':f.submitted && cheque_no?.invalid}" required></ion-input>
+                        </ion-item>
+                        
+                        <ion-item>
+                            <ion-label floating><span><strong>*</strong> Cheque Amount</span></ion-label>
+                            <ion-input  type="tel" name="cheque_amount" (input)="calculate('cheque')" [(ngModel)]="cheque.cheque_amount" required></ion-input>
+                        </ion-item>
+                        
+                    </div>
+                    
+                    <div class="input-cs payment-heading" *ngIf="data.card">
+                        <div class="csn-heading">CARD</div>
+                        
+                        <ion-item>
+                            <ion-label floating><span><strong>*</strong> Transaction ID</span></ion-label>
+                            <ion-input type="text" name="trans_id" [(ngModel)]='card.trans_id' required></ion-input>
+                        </ion-item>
+                        
+                        <ion-item>
+                            <ion-label floating><span><strong>*</strong>Amount</span></ion-label>
+                            <ion-input type="tel" name="trans_amount" (input)="calculate('card')" [(ngModel)]="card.trans_amount" required></ion-input>
+                        </ion-item>
+                    </div>
+                    
+                    <div class="input-cs payment-heading" *ngIf="data.cash">
+                        <div class="csn-heading">CASH</div>
+                        
+                        <ion-item>
+                            <ion-label floating><span><strong>*</strong> Amount</span></ion-label>
+                            <ion-input  type="number" name="cash_amount" (input)="calculate('cash')" [(ngModel)]="cash.cash_amount" required></ion-input>
+                        </ion-item>
+                    </div>
+
+                    <div class="input-cs payment-heading" *ngIf="data.credit">
+                        <div class="csn-heading">Credit Details </div>
+                        
+                        <ion-item>
+                            <ion-label floating><span><strong>*</strong> No. of days</span></ion-label>
+                            <ion-input type="tel" name="no_of_days" [(ngModel)]='credit.no_of_days' required></ion-input>
+                        </ion-item>
+                        
+                        <ion-item>
+                            <ion-label floating><span><strong>*</strong>Amount</span></ion-label>
+                            <ion-input type="tel" name="credit_amt" (input)="calculate('credit')" [(ngModel)]="credit.credit_amt" required></ion-input>
+                        </ion-item>
+                    </div>
+                </div>
+                
+                <button class="mr10 mt15" ion-button outline  color="theme" block>SAVE</button>
+                
+            </form>
+            
+        </div>            
+    </div>
+    
+    
+</ion-content>

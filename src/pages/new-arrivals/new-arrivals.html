@@ -1,0 +1,78 @@
+<ion-header no-border>
+	<ion-navbar>
+		<ion-title>
+		</ion-title>
+		<ion-buttons end class="search-icon">
+			<button (click)="goToSearch()" ion-button icon-only>
+				<ion-icon name="search"></ion-icon>
+			</button>
+		</ion-buttons>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<div class="cs-header">
+		<h2>{{arrivalslist.length}} Products found</h2>
+
+		<ion-buttons  [ngClass]="{'active': listActive}" end class="list-icon mr10">
+			<button ion-button>
+				<img  src="assets/imgs/main-imgs/icon-list.svg" (click)="toggleListView()" alt="">
+			</button>
+		</ion-buttons>
+
+		<ion-buttons end class="filter-icon">
+            <ion-fab top right edge>
+                <button ion-fab mini><img src="assets/imgs/main-imgs/icon-filter.svg" alt=""></button>
+                
+                <ion-fab-list>
+                    <div class="clcsd">
+                        <ul materialize="collapsible" class="collapsible" data-collapsible="accordion">
+                            
+                            <li class="active">
+                                <div class="collapsible-header">Category</div>
+                                <div class="collapsible-body" >
+                                    <ion-item *ngFor="let data of category_list" >
+										<ion-label>{{data.category}}</ion-label>
+										<ion-checkbox color="light" [(ngModel)]="data.checked" (ionChange)="saveFilterSelected('category', data.category, data.checked)"  ></ion-checkbox>
+									</ion-item>
+                                </div>
+                            </li>
+                            
+                            <li>
+                                <div class="collapsible-header">Sub category</div>
+                                <div class="collapsible-body">
+										<ion-item *ngFor="let data of subcategorydata">
+												<ion-label>{{data.sub_category}}</ion-label>
+												<ion-checkbox color="light"></ion-checkbox>
+											</ion-item>
+                                </div>
+                            </li>
+                            
+                            <li>
+                                <div (click)="togglePopUp()" class="clear-btn">Clear</div>
+                            </li>
+                        </ul> 
+                    </div>
+                </ion-fab-list>
+            </ion-fab>
+        </ion-buttons>	
+	</div>
+	<div class="main-container" [ngClass]="{'active': listActive}">
+		<div class="figure" (click)="SeeProductDetails(pro.id)" *ngFor="let pro of arrivalslist">
+			<div class="pcl">
+				<div class="thumb">
+					<div class="outer">
+						<div class="innear">
+								<img alt="" [src]="pro.image ? upload_url+pro.image : 'assets/imgs/main-imgs/product.png'">
+						</div>
+					</div>
+				</div>
+				<div class="discriptions">
+					<h1>{{pro.product_name}}</h1>
+					<h2>{{pro.cat_no}}</h2>
+					<h3>Rs. <span>{{pro.price}}/-</span></h3>
+				</div>
+			</div>
+		</div>
+	</div>
+</ion-content>

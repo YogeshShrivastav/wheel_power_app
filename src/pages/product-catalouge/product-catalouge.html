@@ -1,0 +1,93 @@
+
+<ion-header class="cs-h75" [ngClass] ="{'open-filter' : toggle == true}">
+    
+    <ion-navbar>
+        <ion-title>Products</ion-title>
+        <ion-buttons end *ngIf="(cart_array.length > 0)">
+            <button ion-button class="cart-icon mr16" (click)="(cart_array.length > 0) && goto_cart()">
+                <span class="counter">{{cart_array.length > 0 ? cart_array.length : 0}}</span>
+                <img src="assets/imgs/ic_shopping.svg" alt="">
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+    
+    <ion-toolbar class="cs-search-terms f-icon">
+        <ion-searchbar name="search" [(ngModel)]="data.search" (input)="search();get_all_product()" (change)="search();get_all_product()"></ion-searchbar>
+    </ion-toolbar>
+</ion-header>
+
+
+<div style="padding-top: 99px; position: relative; z-index: 1; background: #fff;">
+    <div padding class="pr-brands pr0" >
+        <div class="fgr">
+            <ion-item *ngFor="let row of brand_list;let i=index;">
+                <ion-label><img src="{{row.image ? upload_url+row.image : 'default.png'}}" alt=""></ion-label>
+                <ion-checkbox color="secondary" name="checked{{i}}" (click)="select_brand(i,row.checked);get_all_product();get_category()" [(ngModel)]="row.checked"></ion-checkbox>
+            </ion-item>
+        </div>
+    </div>
+    
+    <div padding class="pr-category pr0 pt0">
+        <div class="fgr">
+            <button ion-item class="{{all ? 'active' : ''}}" (click)="select_cat('all');get_all_product()">All</button>
+            <button ion-item *ngFor="let row of category_list;let i=index;" class="{{row.active ? 'active' : ''}}"  (click)="select_cat(i);get_all_product()">{{row.category}}</button>
+        </div>
+    </div>
+</div>
+<ion-content [ngClass] ="{'open-filter' : toggle == true}" style="margin-top:160px; position:absolute;" #pageTop>
+    
+    <div class="prsprt"></div>
+    
+    <div *ngIf="show" class="nothing-content">
+        <img src="assets/imgs/nothing.svg" alt="">
+        <p>Nothing here yet</p>
+    </div>
+    <div class="productlist">
+        <div class="figure" *ngFor="let row of product_data;let i=index;">
+            <div class="prnames">
+                <h1>{{row.product_name | titlecase}}</h1>
+                <p>{{row.brand | titlecase}} | <span>{{row.cat_no | titlecase}}</span></p>
+            </div>
+            <div class="pr-figure">
+                <div class="thumbd">
+                    <div class="thumb" (click)="zoom_image(row.image ? upload_url+row.image : 'assets/imgs/default.png')">
+                        <img src="{{row.image ? upload_url+row.image : 'assets/imgs/default.png' }}" alt="">                           
+                    </div>
+                    <div class="line-content"  (click)="(token && login_data.user_type != 'customer') && show_stock(row.cat_no)">
+                        <p class="status font12"><strong class="{{row.current_stock == 0 ? 'out' : 'in'}}">{{row.current_stock == 0 ? 'Out of stock' : 'Instock'}}</strong></p>
+                        <h1 *ngIf="token && login_data.user_type != 'customer'">( {{row.current_stock}} )</h1>  
+                    </div>                      
+                    
+                </div>
+                <div class="description" >
+                    <div class="table-fgr" (click)="goToProductdetail(row.cat_no)">
+                        <div class="pr-info">
+                            <p>Category</p>
+                            <p>{{row.category | titlecase}}</p>
+                        </div>
+                        <div class="pr-info">
+                            <p>Price</p>
+                            <p>&#8377; {{row.price}}/-</p>
+                        </div>
+                    </div>
+                    <div class="qnt-input" >
+                        <div class="qntbx">
+                            <label>QTY</label>
+                            <ul>
+                                <li class="delete"><button ion-item (click)="quantity(i,'remove')"><i class="material-icons">remove</i></button></li>
+                                <li><input type="text" name="qty{{i}}" readonly [ngModel]="row.qty"></li>
+                                <li class="add"><button ion-item (click)="quantity(i,'add')"><i class="material-icons">add</i></button></li>
+                            </ul>
+                        </div>
+                        <button ion-item class="cart" *ngIf="row.qty > 0" (click)="add_to_cart(row)"><i class="material-icons">shopping_cart</i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--  -->
+    <ion-infinite-scroll *ngIf="pagingEnabled" (ionInfinite)="get_all_product($event)" loadingSpinner="bubbles" loadingText="Loading More Data..."  >
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+    <div class="h160"></div>
+</ion-content>

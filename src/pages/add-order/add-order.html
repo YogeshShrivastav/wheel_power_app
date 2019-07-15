@@ -1,0 +1,117 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>Add-Order</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	
+	<form [formGroup]="orderForm"  (ngSubmit)="confirm_order()" autocomplete="off">
+		<div class="enquirys" style="padding: 0px;">
+			<ion-list>
+				<div class="drop-down">
+					<ion-item>
+						<ion-label>*Category</ion-label>
+						<ionic-selectable
+						(onChange)="get_products()"
+						formControlName="category_val"
+						item-content 
+						[items]="categories"
+						itemValueField="category"
+						itemTextField="category"
+						[canSearch]="true"
+						></ionic-selectable>
+					</ion-item>
+				</div>
+				<div class="drop-down">
+					<ion-item>
+						<ion-label>*Product</ion-label>
+						<ionic-selectable
+						(onChange)="get_price()"
+						formControlName="product_val"
+						item-content 
+						[items]="products"
+						itemValueField="cat_no"
+						itemTextField="cat_no"
+						[canSearch]="true"
+						></ionic-selectable>
+					</ion-item>
+				</div>
+				<div class="dflex">
+					<div class="wp50 mr8">
+						<ion-item>
+							<ion-input type="number" formControlName="qty" placeholder="OTY"></ion-input>
+						</ion-item>
+					</div>
+					<div class="wp50 ml8 mr8">
+						<div class="view-t">{{data_value}}</div>
+					</div>
+					<div class="wp50 ml8">
+						<div class="view-t">{{data_value*orderForm.value.qty}}</div>
+					</div>
+				</div>
+			</ion-list>
+		</div>
+		
+		<div class="add-btn">
+			<button ion-button (click)="addtocart()" [disabled]="data_value*orderForm.value.qty == 0"><i class="material-icons">add</i></button>
+		</div>
+		<div class="order-table" *ngIf="cart_arr.length > 0 ">
+			<table>
+				<tr>
+					<th class="no-border w55">S. No.</th>
+					<th>Product</th>
+					<th class="w100" text-center>Qty</th>
+				</tr>
+				<tr *ngFor="let val of cart_arr; let i =index">
+					<td class="no-border w10" style="padding: 0px !important; text-align: center;">{{i+1}}</td>
+					<td>{{val.cat_no}}</td>
+					<td text-center class="trash">{{val.qty}} <span (click)="del_cart(i)"><i class="material-icons">clear</i></span></td>
+				</tr>
+			</table>
+		</div>
+		
+		<div  *ngIf="cart_arr.length > 0 " class="mt16">
+			
+			<div class="order-detail">
+				<table>
+					<tr>
+						<td class="w80"><span>Total Item</span></td>
+						<th class="w50">:</th>
+						<td>{{total_qty}}</td>
+					</tr>
+				</table>
+				<table>
+					<tr>
+						<td><span>Sub Total</span></td>
+						<th class="w50">:</th>
+						<td class="w100">{{sub_total | number:'1.2-2'}} <img src="assets/imgs/inr-icon.svg" alt=""></td>
+					</tr>
+					<tr>
+						<td><span>Discount ({{dealer_discount}}%)</span></td>
+						<th>:</th>
+						<td>{{disc_value | number:'1.2-2'}} <img src="assets/imgs/inr-icon.svg" alt=""></td>
+					</tr>
+					<tr>
+						<td><span>GST (18%)</span></td>
+						<th>:</th>
+						<td>{{gst_value | number:'1.2-2'}} <img src="assets/imgs/inr-icon.svg" alt=""></td>
+					</tr>
+					<tr>
+						<td><span>Total</span></td>
+						<th>:</th>
+						<td>{{gross_total | number:'1.2-2'}} <img src="assets/imgs/inr-icon.svg" alt=""></td>
+					</tr>
+				</table>
+			</div>
+			
+			<div class="cmt-box">
+				<textarea name="" id="" cols="30" rows="3" placeholder="Write a Remark" formControlName="comment"></textarea>
+			</div>
+			
+			<div class="refbtn">
+				<button type="submit">CONFIRM ORDER</button>
+			</div>
+		</div> 
+	</form>
+</ion-content>

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21.13 18">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+        stroke: #000;
+      }
+
+      .cls-2 {
+        stroke: none;
+      }
+
+      .cls-3 {
+        fill: none;
+      }
+    </style>
+  </defs>
+  <g id="Group_1194" data-name="Group 1194" transform="translate(-337 -85)">
+    <rect id="Rectangle_7" data-name="Rectangle 7" width="21.13" height="2.348" rx="1.174" transform="translate(337 86.565)"/>
+    <rect id="Rectangle_8" data-name="Rectangle 8" width="21.13" height="2.348" rx="1.174" transform="translate(337 92.826)"/>
+    <rect id="Rectangle_9" data-name="Rectangle 9" width="21.13" height="2.348" rx="1.174" transform="translate(337 99.087)"/>
+    <g id="Rectangle_10" data-name="Rectangle 10" class="cls-1" transform="translate(339.348 97.522)">
+      <rect class="cls-2" width="5.478" height="5.478" rx="2.739"/>
+      <rect class="cls-3" x="0.5" y="0.5" width="4.478" height="4.478" rx="2.239"/>
+    </g>
+    <g id="Rectangle_10-2" data-name="Rectangle 10" class="cls-1" transform="translate(344.826 91.261)">
+      <rect class="cls-2" width="5.478" height="5.478" rx="2.739"/>
+      <rect class="cls-3" x="0.5" y="0.5" width="4.478" height="4.478" rx="2.239"/>
+    </g>
+    <g id="Rectangle_10-3" data-name="Rectangle 10" class="cls-1" transform="translate(350.305 85)">
+      <rect class="cls-2" width="5.478" height="5.478" rx="2.739"/>
+      <rect class="cls-3" x="0.5" y="0.5" width="4.478" height="4.478" rx="2.239"/>
+    </g>
+  </g>
+</svg>

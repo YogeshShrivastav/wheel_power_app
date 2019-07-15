@@ -1,0 +1,134 @@
+page-order-list {
+      .orders
+      {
+            .figure
+            {
+                  margin-bottom: 16px;
+                  border-radius: 4px 4px 0px 0px;
+                  background: #fff;
+                  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+                  
+                  &.assign
+                  {
+                        border-top: solid 4px #00B900;
+                        
+                        .hed
+                        {
+                              h1
+                              {
+                                    color: #00B900;
+                              }
+                        }
+                  }
+                  
+                  
+                  &.pending
+                  {
+                        border-top: solid 4px #FFBB00;
+                        
+                        .hed
+                        {
+                              h1
+                              {
+                                    color: #FFBB00;
+                              }
+                        }
+                  }
+                  
+                  &.reject
+                  {
+                        border-top: solid 4px #FF0000;
+                        
+                        .hed
+                        {
+                              h1
+                              {
+                                    color: #FF0000;
+                              }
+                        }
+                  }
+                  
+                  &.deliver
+                  {
+                        border-top: solid 4px #001aff;
+                        
+                        .hed
+                        {
+                              h1
+                              {
+                                    color: #001aff;
+                              }
+                        }
+                  }
+                  
+                  .hed
+                  {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        padding: 16px;
+                        
+                        h1
+                        {
+                              font-weight: 600;
+                              font-size: 14px;
+                              line-height: 18px;
+
+                              span{color: #000 !important; padding-left: 10px;}
+                        }
+                        
+                        p
+                        {
+                              font-weight: normal;
+                              font-size: 13px;
+                              line-height: 18px;
+                              color: #002341;
+                              white-space: nowrap;
+                        }
+                  }
+                  
+                  
+                  .csname
+                  {
+                        padding-left: 16px;
+                        padding-bottom: 10px;
+
+                        h1{font-size: 16px;}
+                  }
+                  
+                  .desc
+                  {
+                        display: flex;
+                        align-items: center;
+                        padding: 16px;
+                        padding-top: 0;
+                        
+                        .rfr
+                        {
+                              border: solid 1px #DEDEDE;
+                              width: 100%;
+                              padding: 10px;
+                              
+                              p
+                              {
+                                    &:nth-child(1)
+                                    {
+                                          font-weight: normal;
+                                          font-size: 13px;
+                                          line-height: 18px;
+                                          color: #002341;
+                                    }  
+                                    
+                                    &:nth-child(2)
+                                    {
+                                          font-weight: 600;
+                                          font-size: 14px;
+                                          line-height: 18px;
+                                          color: #002341;
+                                    }                        
+                              }
+                        }
+                  }
+            }
+      }
+}

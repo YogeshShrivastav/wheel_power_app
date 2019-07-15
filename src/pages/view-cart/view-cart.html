@@ -1,0 +1,67 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>
+			<h1>view-cart</h1>
+		</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+	<div class="order-detail">
+		<table>
+			<tr>
+				<td><span>Total Item</span></td>
+				<td class="w100">{{cart_arr.length}}</td>
+			</tr>
+			<tr>
+				<td><span>MRP Total</span></td>
+				<td>&#8377; {{total_price}}</td>
+			</tr>
+		</table>
+	</div>
+	<div class="shipp-charges">
+		*Shipping Charges As per delivery address
+	</div>
+
+	<div class="refbtn" style="margin-top: 15px;">
+		<button (click)="goToOrderPage()">CONFIRM</button>
+	</div>
+
+	<div class="products listing">
+		<!-- Loop Start -->
+		<div class="figure" *ngFor="let data of cart_arr;let i = index">
+			<div class="plc">
+				<button class="close" (click)="remove_from_cart(i)">
+					<ion-icon ios="ios-close" md="md-close"></ion-icon>
+				</button>
+				<div class="thumb">
+					<div class="outer">
+						<div class="innear">
+							<img alt="" [src]="data.image ? upload_url+data.image : 'assets/imgs/main-imgs/product.png'">
+						</div>
+					</div>
+				</div>
+
+				<div class="description">
+					<p>{{data.name}}</p>
+					<!-- <p><span>INR {{val.price2}}</span><br>INR {{val.price}}</p> -->
+					<p>INR {{data.price}}</p>
+					<div class="bk-btn">
+						<ul>
+							<li><button [disabled]="data.count == 1">
+									<ion-icon ios="ios-remove" (click)="rm_item(i)" md="md-remove"></ion-icon>
+								</button></li>
+							<li><strong>{{data.count}}</strong></li>
+							<li><button>
+									<ion-icon ios="ios-add" (click)="add_item(i)" md="md-add"></ion-icon>
+								</button></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Loop End -->
+	</div>
+
+</ion-content>

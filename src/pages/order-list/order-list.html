@@ -1,0 +1,51 @@
+
+<ion-header class="cs-h75" [ngClass] ="{'open-filter' : toggle == true}">
+    
+    <ion-navbar>
+        <ion-title>Orders</ion-title>
+        <ion-buttons end>
+            <button ion-button class="cart-icon mr16" (click)="(cart_array.length > 0) && goto_cart()">
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+    
+    <ion-toolbar class="cs-search-terms f-icon">
+        <ion-searchbar name="search_val" [(ngModel)]="search.search_val" (input)="get_order()" (change)="get_order()"></ion-searchbar>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>  
+    <div class="nothing-here" *ngIf="show"> 
+        <div class="outer">
+            <div class="innear">
+                <img src="assets/imgs/nothing.svg" alt="">
+                <p>Nothing here yet</p>
+            </div>
+        </div>
+    </div>
+    <div class="orders mt20" *ngFor="let d of order_list">
+        <div class="figure {{d.status}}" (click)="goToOrderdetail(d)">
+            <div class="hed">
+                <h1>{{d.status | titlecase}}  <span>#ORD{{d.id}}</span></h1>
+                <p>{{d.date_created | date:'d MMM y'}}</p>
+            </div>
+            <div class="csname">
+                <h1>{{d.customer_name}}</h1>
+            </div>
+            <div class="desc">
+                <div class="rfr">
+                    <p>Value</p>
+                    <p>{{d.order_total}}</p>
+                </div>
+                <div class="rfr">
+                    <p>Payment</p>
+                    <p>&#8377; {{d.payment_total}}</p>
+                </div>
+                <div class="rfr">
+                    <p>Qty</p>
+                    <p>{{d.total_item}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-content>

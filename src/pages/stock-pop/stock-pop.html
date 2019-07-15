@@ -1,0 +1,33 @@
+
+<ion-content padding style="background: rgba(0,0,0,0.6);">
+  <button class="bg-btn" (click)="close()"><i class="material-icons">cancel</i></button>
+  
+  <div style="height: 100%; display: flex; align-items: center;">
+    <div class="collaps od-summary" style="background:#fff;">
+      <ul class="collapsible" style="list-style:none;">
+        <li style="border-bottom:0px !important;">
+          <div class="collapsible-body">
+            <div class="cs-table">
+              <div class="head-table">
+                <table>
+                  <tr>
+                    <th class="w227">Warehouse Name</th>
+                    <th class="w100">Qty</th>
+                  </tr>
+                </table>
+              </div>
+              <div class="br-table">
+                <table>
+                  <tr *ngFor="let row of warehouse_detail">
+                    <td class="w227">{{row.warehouse_name | titlecase}}</td>
+                    <th class="w100">{{row.current_stock}}</th>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>  
+</ion-content>
